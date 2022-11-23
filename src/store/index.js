@@ -125,7 +125,7 @@ const store = new Vuex.Store({
           ]);
         }
 
-        // around에 모은 8칸중 지뢰칸을 제거
+        // around에 모은 8칸중 지뢰만 카운트
         const counted = around.filter((v) => {
           return [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v);
         });
@@ -151,6 +151,7 @@ const store = new Vuex.Store({
             near.push([row + 1, cell + 1]);
           }
 
+          //
           near.forEach((n) => {
             if (state.tableData[n[0]][n[1]] !== CODE.OPENED) {
               checkAround(n[0], n[1]);
@@ -159,6 +160,8 @@ const store = new Vuex.Store({
         }
 
         if (state.tableData[row][cell] === CODE.NORMAL) openedCount += 1;
+
+        // 주변 지뢰 개수 표시
         Vue.set(state.tableData[row], cell, counted.length);
       }
       checkAround(row, cell);
