@@ -61,6 +61,7 @@ const store = new Vuex.Store({
     timer: 0,
     halted: true, // 타이머 중단
     result: '',
+    openedCount: 0,
   }, // vue의 data와 비슷
   getters: {}, // vue의 computed와 비슷
   mutations: {
@@ -76,8 +77,12 @@ const store = new Vuex.Store({
       };
       state.tableData = plantMine(row, cell, mine);
       state.timer = 0;
+      state.halted = false;
+      state.openedCount = 0;
+      state.result = '';
     },
     [OPEN_CELL](state, { row, cell }) {
+      // 열린칸 숫자 체크
       let openedCount = 0;
       const checked = [];
 
@@ -159,18 +164,23 @@ const store = new Vuex.Store({
           });
         }
 
+        // 지뢰가 아닌 칸이면 열린칸 체크 + 1
         if (state.tableData[row][cell] === CODE.NORMAL) openedCount += 1;
 
         // 주변 지뢰 개수 표시
         Vue.set(state.tableData[row], cell, counted.length);
       }
+
       checkAround(row, cell);
       let halted = false;
       let result = '';
+
+      // state.openedCount = 누적된 열린 칸 개수 / openedCount = 방금 열린 칸 개수
       if (state.data.row * state.data.cell - state.data.mine === state.openedCount + openedCount) {
         halted = true;
         result = `${state.timer}초만에 승리하셨습니다.`;
       }
+
       state.openedCount += openedCount;
       state.halted = halted;
       state.result = result;
