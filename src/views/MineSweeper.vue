@@ -9,9 +9,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import store, { INCREMENT_TIMER } from '../store';
-import TableComponent from '../components/TableComponent.vue';
-import MineForm from '../components/MineForm.vue';
+import store, { INCREMENT_TIMER } from '@/store/index';
+import TableComponent from '@/components/TableComponent';
+import MineForm from '@/components/MineForm';
 
 let interval;
 
