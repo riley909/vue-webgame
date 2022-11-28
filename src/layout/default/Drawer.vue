@@ -11,14 +11,11 @@
 </template>
 
 <script>
-import DefaultDrawerHeader from './DrawerHeader';
-import DefaultList from './List';
-
 export default {
   name: 'DefaultDrawer',
   components: {
-    DefaultDrawerHeader,
-    DefaultList,
+    DefaultDrawerHeader: () => import('./DrawerHeader'),
+    DefaultList: () => import('./List'),
   },
   data: () => ({
     gradient: 'rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)',

@@ -9,10 +9,9 @@
 </template>
 
 <script>
-import ProductItem from '@/components/product/ProductItem';
 export default {
   components: {
-    ProductItem,
+    ProductItem: () => import('@/components/product/ProductItem'),
   },
 };
 </script>

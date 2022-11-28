@@ -7,16 +7,12 @@
 </template>
 
 <script>
-import DefaultBar from './AppBar';
-import DefaultDrawer from './Drawer';
-import DefaultView from './View';
-
 export default {
   name: 'DefaultLayout',
   components: {
-    DefaultBar,
-    DefaultDrawer,
-    DefaultView,
+    DefaultBar: () => import('./AppBar'),
+    DefaultDrawer: () => import('./Drawer'),
+    DefaultView: () => import('./View'),
   },
   data: () => ({
     drawer: false,

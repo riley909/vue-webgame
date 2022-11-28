@@ -6,14 +6,11 @@
 </template>
 
 <script>
-import PageBar from './AppBar';
-import PageView from './View';
-
 export default {
   name: 'PageLayout',
   components: {
-    PageBar,
-    PageView,
+    PageBar: () => import('./AppBar'),
+    PageView: () => import('./View'),
   },
 };
 </script>
