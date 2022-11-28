@@ -1,26 +1,23 @@
 <template>
-  <v-list dense nav>
-    <v-list-item
-      v-for="(item, index) in items"
-      :key="`item-${index}`"
-      link
-      :to="item.to"
-      class="py-1"
-      active-class="primary white--text"
-    >
-      <v-list-item-icon>
-        <v-icon>{{ item.icon }}</v-icon>
-      </v-list-item-icon>
-      <v-list-item-content>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
+  <v-list expand dense nav>
+    <!-- 하위메뉴가 있으면 list-group, 없으면 list-item -->
+    <template v-for="(item, index) in items">
+      <default-list-group v-if="item.items" :key="`group-${index}`" :item="item" />
+      <default-list-item v-else :key="`item-${index}`" :item="item" />
+    </template>
   </v-list>
 </template>
 
 <script>
+import DefaultListItem from './ListItem';
+import DefaultListGroup from './ListGroup';
+
 export default {
   name: 'DefaultList',
+  components: {
+    DefaultListItem,
+    DefaultListGroup,
+  },
   props: {
     items: {
       type: Array,
