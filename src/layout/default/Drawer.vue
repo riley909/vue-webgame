@@ -3,40 +3,23 @@
     <template #img="props">
       <v-img :gradient="gradient" v-bind="props" />
     </template>
-    <v-list-item>
-      <v-list-item-avatar>
-        <div>VTP</div>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="text-h6"> Vuetify Test Project </v-list-item-title>
-        <v-list-item-subtitle> Vuetify v2.6.0 </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+    <default-drawer-header />
     <v-divider />
 
-    <v-list dense nav>
-      <v-list-item
-        v-for="(item, index) in items"
-        :key="`item-${index}`"
-        link
-        :to="item.to"
-        class="py-1"
-        active-class="primary white--text"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+    <default-list :items="items" />
   </v-navigation-drawer>
 </template>
 
 <script>
+import DefaultDrawerHeader from './DrawerHeader';
+import DefaultList from './List';
+
 export default {
   name: 'DefaultDrawer',
+  components: {
+    DefaultDrawerHeader,
+    DefaultList,
+  },
   data: () => ({
     gradient: 'rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)',
     items: [
