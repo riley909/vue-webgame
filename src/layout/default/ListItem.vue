@@ -1,5 +1,5 @@
 <template>
-  <v-list-item :key="`item-${index}`" link :to="item.to" class="py-1" active-class="primary white--text">
+  <v-list-item link :to="item.to" class="py-1" active-class="primary white--text">
     <v-list-item-icon>
       <v-icon>{{ item.icon }}</v-icon>
     </v-list-item-icon>
