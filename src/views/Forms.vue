@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'Forms',
+};
 </script>
 
 <style lang="scss" scoped></style>

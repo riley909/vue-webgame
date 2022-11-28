@@ -17,6 +17,7 @@ let interval;
 
 export default {
   store,
+  name: 'MineSweeper',
   components: {
     TableComponent,
     MineForm,

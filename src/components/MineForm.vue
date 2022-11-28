@@ -11,6 +11,7 @@
 import { START_GAME } from '@/store';
 
 export default {
+  name: 'MineForm',
   data() {
     return {
       row: 10,

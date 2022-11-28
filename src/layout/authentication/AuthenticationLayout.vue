@@ -5,10 +5,12 @@
 </template>
 
 <script>
+import AuthenticationView from './View';
+
 export default {
   name: 'AuthenticationLayout',
   components: {
-    AuthenticationView: () => import('./View'),
+    AuthenticationView,
   },
 };
 </script>

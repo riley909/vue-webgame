@@ -1,5 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import DefaultLayout from '@/layout/default/DefaultLayout';
+import Dashboard from '@/views/Dashboard';
+import GridSystem from '@/views/GridSystem';
+import Breakpoints from '@/views/Breakpoints';
+import GridListPage from '@/views/GridListPage';
+import Typography from '@/views/Typography';
+import Tables from '@/views/Tables';
+import Buttons from '@/views/Buttons';
+import Icons from '@/views/Icons';
+import Forms from '@/views/Forms';
+import MineSweeper from '@/views/MineSweeper';
+import AuthenticationLayout from '@/layout/authentication/AuthenticationLayout';
+import SignIn from '@/views/authentication/SignIn';
+import SignUp from '@/views/authentication/SignUp';
+import PageLayout from '@/layout/page/PageLayout';
+import ProductList from '@/views/page/ProductList';
 
 // 웹페이지에 처음 접속하면 /test로 접근하지 않아도 /test의 리소스를 확인할 수 있음(화면에는 안나오지만 콘솔로그는 확인되고 리소스는 로딩됨)
 // 컴포넌트에 레이지로딩을 적용하면 처음 사이트에 접속했을때 컴포넌트의 로딩을 막고 해당 페이지에 접근해야만 리소스들을 로딩할 수 있음
@@ -14,6 +30,8 @@ import VueRouter from 'vue-router';
 // 모든 컴포넌트가 다 분할되어서 빌드되고 청크파일이 너무 많이 생기면 비효율적일 수도 있음
 // 청크파일을 그룹으로 묶어서 생성하고 싶을때 웹팩의 특수 주석 /* webpackChunkName: "묶고싶은 그룹이름" */ 을 사용
 
+// dynamic import 사용시 [Vue warn]: Failed to mount component: 에러
+
 // const Test = function () {
 //   return import('@/views/Test');
 //  // resolve({
@@ -26,67 +44,66 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    component: () => import(/* webpackChunkName: "layouts-default-index" */ '@/layout/default/DefaultLayout'),
+    component: DefaultLayout,
     children: [
       {
         path: '/',
         name: 'Dashboard',
-        component: () => import(/* webpackChunkName: "views-dashboard" */ '@/views/Dashboard'),
+        component: Dashboard,
       },
       {
         path: '/grid-system',
         name: 'GridSystem',
-        component: import(/* webpackChunkName: "views-grid-system" */ '@/views/GridSystem'),
+        component: GridSystem,
       },
       {
         path: '/breakpoints',
         name: 'Breakpoints',
-        component: import(/* webpackChunkName: "views-breakpoints" */ '@/views/Breakpoints'),
+        component: Breakpoints,
       },
       {
         path: '/grid-list-page',
         name: 'GridListPage',
-        component: import(/* webpackChunkName: "views-grid-list-page" */ '@/views/GridListPage'),
+        component: GridListPage,
       },
       {
         path: '/typography',
         name: 'Typography',
-        component: import(/* webpackChunkName: "views-typography" */ '@/views/Typography'),
+        component: Typography,
       },
-      { path: '/tables', name: 'Tables', component: import(/* webpackChunkName: "views-tables" */ '@/views/Tables') },
-      { path: '/forms', name: 'Forms', component: import(/* webpackChunkName: "views-forms" */ '@/views/Forms') },
+      { path: '/tables', name: 'Tables', component: Tables },
+      { path: '/forms', name: 'Forms', component: Forms },
       {
         path: '/buttons',
         name: 'Buttons',
-        component: import(/* webpackChunkName: "views-buttons" */ '@/views/Buttons'),
+        component: Buttons,
       },
-      { path: '/icons', name: 'Icons', component: import(/* webpackChunkName: "views-icons" */ '@/views/Icons') },
-      { path: '/mine-sweeper', component: import(/* webpackChunkName: "views-mine-sweeper" */ '@/views/MineSweeper') },
+      { path: '/icons', name: 'Icons', component: Icons },
+      { path: '/mine-sweeper', component: MineSweeper },
       {
         path: '/authentication',
-        component: () =>
-          import(/* webpackChunkName: "views-authentication-index" */ '@/layout/authentication/AuthenticationLayout'),
+        component: AuthenticationLayout,
         children: [
           {
             path: 'sign-in',
             name: 'SignIn',
-            component: () => import(/* webpackChunkName: "views-sign-in" */ '@/views/authentication/SignIn'),
+            component: SignIn,
           },
           {
             path: 'sign-up',
             name: 'SignUp',
-            component: () => import(/* webpackChunkName: "views-sign-up" */ '@/views/authentication/SignUp'),
+            component: SignUp,
           },
         ],
       },
       {
         path: '/page',
-        component: () => import(/* webpackChunkName: "layouts-page-index" */ '@/layout/page/PageLayout'),
+        component: PageLayout,
         children: [
           {
             path: 'product-list',
             name: 'ProductList',
-            component: import(/* webpackChunkName: "views-product-list" */ '@/views/ProductList'),
+            component: ProductList,
           },
         ],
       },

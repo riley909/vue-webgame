@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'Typography',
+};
 </script>
 
 <style lang="scss" scoped></style>

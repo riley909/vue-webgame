@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'GridSystem',
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -5,8 +5,8 @@
         <v-card width="460">
           <v-card-text class="text-center px-12 py-16">
             <div class="text-h4 font-weight-black mb-10">로그인</div>
-            <v-text-field v-model="message1" label="이메일" clearable prepend-icon="mdi-email" />
-            <v-text-field v-model="message1" label="비밀번호" clearable prepend-icon="mdi-lock-outline" />
+            <v-text-field v-model="email" label="이메일" clearable prepend-icon="mdi-email" />
+            <v-text-field v-model="password" label="비밀번호" clearable prepend-icon="mdi-lock-outline" />
             <v-btn block x-large color="primary" class="mt-6">로그인</v-btn>
           </v-card-text>
         </v-card>
@@ -16,7 +16,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'SignIn',
+  data: () => ({
+    email: null,
+    password: null,
+  }),
+};
 </script>
 
 <style lang="scss" scoped></style>

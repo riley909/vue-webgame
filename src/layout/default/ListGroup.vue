@@ -14,10 +14,12 @@
 </template>
 
 <script>
+import DefaultListItem from './ListItem';
+
 export default {
   name: 'DefaultListGroup',
   components: {
-    DefaultListItem: () => import('./ListItem'),
+    DefaultListItem,
   },
   props: {
     item: {

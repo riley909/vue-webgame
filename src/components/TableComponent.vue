@@ -19,6 +19,7 @@ import { CLICK_MINE, CODE, FLAG_CELL, NORMALIZE_CELL, OPEN_CELL, QUESTION_CELL }
 import { mapState } from 'vuex';
 
 export default {
+  name: 'TableComponent',
   computed: {
     ...mapState(['tableData', 'halted']),
     cellDataStyle() {

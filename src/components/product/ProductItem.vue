@@ -21,7 +21,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'ProductItem',
+};
 </script>
 
 <style lang="scss" scoped></style>
