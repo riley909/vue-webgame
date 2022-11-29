@@ -87,7 +87,7 @@ const mutations = {
     let openedCount = 0;
     const checked = [];
 
-    function checkAround() {
+    function checkAround(row, cell) {
       const checkRowOrCellIsUndefined =
         row < 0 || row >= state.tableData.length || cell < 0 || cell >= state.tableData[0].length;
 
