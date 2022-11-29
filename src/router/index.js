@@ -6,10 +6,12 @@ import GridSystem from '@/views/GridSystem';
 import Breakpoints from '@/views/Breakpoints';
 import GridListPage from '@/views/GridListPage';
 import Typography from '@/views/Typography';
-import Tables from '@/views/Tables';
+import BasicTable from '@/views/table/BasicTable';
+import AppTable from '@/views/table/AppTable';
 import Buttons from '@/views/Buttons';
 import Icons from '@/views/Icons';
-import Forms from '@/views/Forms';
+import AppForm from '@/views/form/AppForm';
+import ValidationForm from '@/views/form/ValidationForm';
 import MineSweeper from '@/views/MineSweeper';
 import AuthenticationLayout from '@/layout/authentication/AuthenticationLayout';
 import SignIn from '@/views/authentication/SignIn';
@@ -71,8 +73,10 @@ const routes = [
         name: 'Typography',
         component: Typography,
       },
-      { path: '/tables', name: 'Tables', component: Tables },
-      { path: '/forms', name: 'Forms', component: Forms },
+      { path: '/tables/basic-table', name: 'BasicTable', component: BasicTable },
+      { path: '/tables/app-table', name: 'AppTable', component: AppTable },
+      { path: '/forms/app-form', name: 'AppForm', component: AppForm },
+      { path: '/forms/validation-form', name: 'ValidationForm', component: ValidationForm },
       {
         path: '/buttons',
         name: 'Buttons',
@@ -80,32 +84,32 @@ const routes = [
       },
       { path: '/icons', name: 'Icons', component: Icons },
       { path: '/mine-sweeper', component: MineSweeper },
+    ],
+  },
+  {
+    path: '/authentication',
+    component: AuthenticationLayout,
+    children: [
       {
-        path: '/authentication',
-        component: AuthenticationLayout,
-        children: [
-          {
-            path: 'sign-in',
-            name: 'SignIn',
-            component: SignIn,
-          },
-          {
-            path: 'sign-up',
-            name: 'SignUp',
-            component: SignUp,
-          },
-        ],
+        path: 'sign-in',
+        name: 'SignIn',
+        component: SignIn,
       },
       {
-        path: '/page',
-        component: PageLayout,
-        children: [
-          {
-            path: 'product-list',
-            name: 'ProductList',
-            component: ProductList,
-          },
-        ],
+        path: 'sign-up',
+        name: 'SignUp',
+        component: SignUp,
+      },
+    ],
+  },
+  {
+    path: '/page',
+    component: PageLayout,
+    children: [
+      {
+        path: 'product-list',
+        name: 'ProductList',
+        component: ProductList,
       },
     ],
   },
