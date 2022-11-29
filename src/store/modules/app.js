@@ -41,6 +41,7 @@ const state = {
     },
     { title: 'Buttons', icon: 'mdi-gesture-tap-button', to: '/buttons' },
     { title: 'Icons', icon: 'mdi-emoticon-excited-outline', to: '/icons' },
+    { title: 'MineSweeper', icon: 'mdi-bomb', to: '/mine-sweeper' },
   ],
 };
 

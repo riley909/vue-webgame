@@ -15,16 +15,16 @@
 </template>
 
 <script>
-import { CLICK_MINE, CODE, FLAG_CELL, NORMALIZE_CELL, OPEN_CELL, QUESTION_CELL } from '@/store';
+import { CLICK_MINE, CODE, FLAG_CELL, NORMALIZE_CELL, OPEN_CELL, QUESTION_CELL } from '@/store/modules/mineSweeper';
 import { mapState } from 'vuex';
 
 export default {
   name: 'TableComponent',
   computed: {
-    ...mapState(['tableData', 'halted']),
+    ...mapState('mineSweeper', ['tableData', 'halted']),
     cellDataStyle() {
       return (row, cell) => {
-        switch (this.$store.state.tableData[row][cell]) {
+        switch (this.$store.state.mineSweeper.tableData[row][cell]) {
           case CODE.NORMAL:
           case CODE.MINE:
             return { background: '#444' };
@@ -44,7 +44,7 @@ export default {
     },
     cellDataText() {
       return (row, cell) => {
-        switch (this.$store.state.tableData[row][cell]) {
+        switch (this.$store.state.mineSweeper.tableData[row][cell]) {
           case CODE.MINE:
             return 'X';
           case CODE.NORMAL:
@@ -58,7 +58,7 @@ export default {
           case CODE.CLICKED_MINE:
             return '펑';
           default:
-            return this.$store.state.tableData[row][cell] || '';
+            return this.$store.state.mineSweeper.tableData[row][cell] || '';
         }
       };
     },
@@ -69,9 +69,9 @@ export default {
 
       switch (this.tableData[row][cell]) {
         case CODE.NORMAL:
-          return this.$store.commit(OPEN_CELL, { row, cell });
+          return this.$store.commit(`mineSweeper/${OPEN_CELL}`, { row, cell });
         case CODE.MINE:
-          return this.$store.commit(CLICK_MINE, { row, cell });
+          return this.$store.commit(`mineSweeper/${CLICK_MINE}`, { row, cell });
         default:
           return;
       }
@@ -81,15 +81,15 @@ export default {
       switch (this.tableData[row][cell]) {
         case CODE.NORMAL:
         case CODE.MINE:
-          this.$store.commit(FLAG_CELL, { row, cell });
+          this.$store.commit(`mineSweeper/${FLAG_CELL}`, { row, cell });
           return;
         case CODE.FLAG:
         case CODE.FLAG_MINE:
-          this.$store.commit(QUESTION_CELL, { row, cell });
+          this.$store.commit(`mineSweeper/${QUESTION_CELL}`, { row, cell });
           return;
         case CODE.QUESTION:
         case CODE.QUESTION_MINE:
-          this.$store.commit(NORMALIZE_CELL, { row, cell });
+          this.$store.commit(`mineSweeper/${NORMALIZE_CELL}`, { row, cell });
           return;
       }
     },

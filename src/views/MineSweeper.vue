@@ -9,28 +9,27 @@
 
 <script>
 import { mapState } from 'vuex';
-import store, { INCREMENT_TIMER } from '@/store/index';
+import { INCREMENT_TIMER } from '@/store/modules/mineSweeper';
 import TableComponent from '@/components/TableComponent';
 import MineForm from '@/components/MineForm';
 
 let interval;
 
 export default {
-  store,
   name: 'MineSweeper',
   components: {
     TableComponent,
     MineForm,
   },
   computed: {
-    ...mapState(['timer', 'result', 'halted']),
+    ...mapState('mineSweeper', ['timer', 'result', 'halted']),
   },
   watch: {
     halted(value) {
       if (value === false) {
         // false일때 게임 시작
         interval = setInterval(() => {
-          this.$store.commit(INCREMENT_TIMER);
+          this.$store.commit(`mineSweeper/${INCREMENT_TIMER}`);
         }, 1000);
       } else {
         // 게임 중단
